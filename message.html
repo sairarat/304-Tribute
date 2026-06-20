@@ -1,0 +1,229 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Guestbook Freedom Wall - Yearbook 2026</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Space+Grotesk:wght@400;500&family=JetBrains+Mono:wght@500&family=Indie+Flower&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-surface-dim min-h-screen font-body-lg text-on-surface overflow-x-hidden">
+
+    <div id="app-shell-top"></div>
+
+    <main class="pt-24 px-4 md:px-12 pb-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+        
+        <div class="lg:col-span-4 flex flex-col gap-6">
+          <div class="p-5 bg-white border-4 border-black rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <h2 class="font-display-lg text-2xl font-black text-neutral-900 leading-tight">Freedom Wall</h2>
+            <p class="text-xs font-mono text-secondary mt-1">Leave your permanent mark!</p>
+          </div>
+          
+          <div class="bg-amber-50 p-6 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
+            <h3 class="font-display-lg text-lg font-bold mb-4 text-neutral-900 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-primary">edit_note</span> Write a Note
+            </h3>
+
+            <form id="freedom-form" class="space-y-4">
+              <div>
+                <label class="block font-label-sm text-xs font-bold text-neutral-600 mb-1">Your Name / Handle</label>
+                <input type="text" id="note-author" required class="w-full p-2 border-2 border-black rounded-lg text-sm bg-white focus:ring-0 focus:border-primary" placeholder="Anonymous '26">
+              </div>
+
+              <div>
+                <label class="block font-label-sm text-xs font-bold text-neutral-600 mb-1">Your Message</label>
+                <textarea id="note-text" required rows="3" class="w-full p-2 border-2 border-black rounded-lg text-sm bg-white focus:ring-0 focus:border-primary font-handwriting text-lg" placeholder="Remember that time we..."></textarea>
+              </div>
+
+              <div>
+                <label class="block font-label-sm text-xs font-bold text-neutral-600 mb-1">Attach a Polaroid Snapshot</label>
+                <input type="file" id="note-image" accept="image/*" class="w-full text-xs text-neutral-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-2 file:border-black file:text-xs file:font-bold file:bg-white file:cursor-pointer hover:file:bg-neutral-100">
+              </div>
+
+              <div>
+                <label class="block font-label-sm text-xs font-bold text-neutral-600 mb-1">Choose a Sticker Overlay</label>
+                <div class="flex gap-2">
+                  <label class="cursor-pointer border-2 border-black rounded-md p-1 bg-white hover:bg-neutral-100 flex items-center justify-center text-lg w-9 h-9 has-[:checked]:bg-yellow-200">
+                    <input type="radio" name="note-sticker" value="📌" checked class="hidden">📌
+                  </label>
+                  <label class="cursor-pointer border-2 border-black rounded-md p-1 bg-white hover:bg-neutral-100 flex items-center justify-center text-lg w-9 h-9 has-[:checked]:bg-yellow-200">
+                    <input type="radio" name="note-sticker" value="✨" class="hidden">✨
+                  </label>
+                  <label class="cursor-pointer border-2 border-black rounded-md p-1 bg-white hover:bg-neutral-100 flex items-center justify-center text-lg w-9 h-9 has-[:checked]:bg-yellow-200">
+                    <input type="radio" name="note-sticker" value="❤️" class="hidden">❤️
+                  </label>
+                  <label class="cursor-pointer border-2 border-black rounded-md p-1 bg-white hover:bg-neutral-100 flex items-center justify-center text-lg w-9 h-9 has-[:checked]:bg-yellow-200">
+                    <input type="radio" name="note-sticker" value="🎓" class="hidden">🎓
+                  </label>
+                  <label class="cursor-pointer border-2 border-black rounded-md p-1 bg-white hover:bg-neutral-100 flex items-center justify-center text-lg w-9 h-9 has-[:checked]:bg-yellow-200">
+                    <input type="radio" name="note-sticker" value="🍕" class="hidden">🍕
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="w-full bg-primary text-white font-label-sm text-sm font-bold border-2 border-black py-2 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 active:translate-y-1 transition-all">
+                Pin to Freedom Wall 📌
+              </button>
+            </form>
+          </div>
+          
+          <div id="sidebar-music-player" class="w-full"></div>
+        </div>
+
+        <div class="lg:col-span-8">
+          <div id="freedom-wall-canvas" class="grid grid-cols-1 sm:grid-cols-2 gap-6 min-h-[600px] p-2">
+            </div>
+        </div>
+
+      </div>
+    </main>
+
+    <div id="app-shell-bottom"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="music.js"></script>
+    <script src="layout.js"></script>
+    <script src="app.js"></script>
+    
+    <script>
+      initLayout("home");
+
+      if (window.MusicPlayer && typeof window.MusicPlayer.init === "function") {
+        window.MusicPlayer.init("sidebar-music-player");
+      }
+
+      const API_URL = 'http://localhost:3000/api/notes';
+      const bgPool = ['bg-amber-100', 'bg-blue-100', 'bg-pink-100', 'bg-emerald-100', 'bg-purple-100', 'bg-orange-100'];
+      const wallCanvas = document.getElementById('freedom-wall-canvas');
+      const freedomForm = document.getElementById('freedom-form');
+
+      // Fetch notes dynamically from backend server
+      async function renderWall() {
+        wallCanvas.innerHTML = '';
+        try {
+          const response = await fetch(API_URL);
+          const notes = await response.json();
+
+          notes.forEach(note => {
+            const cardNode = document.createElement('div');
+            cardNode.id = `note-${note.id}`;
+            cardNode.className = `relative p-5 border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-transform hover:scale-[1.03] ${note.bgColor} ${note.rotation}`;
+            
+            let imageHTML = '';
+            if (note.image) {
+              imageHTML = `<div class="mt-3 mb-2 border-2 border-black rounded-lg overflow-hidden bg-white p-1 max-h-none">
+                <img src="http://localhost:3000/${note.image}" class="w-full h-auto object-contain rounded-sm max-h-64 mx-auto" alt="Attached Snapshot">
+              </div>`;
+            }
+
+            cardNode.innerHTML = `
+              <div class="absolute -top-3 left-1/3 w-16 h-5 bg-white/40 border border-dashed border-black/20 -rotate-3 select-none pointer-events-none"></div>
+              <div class="absolute -top-3 -right-2 text-2xl select-none drop-shadow-sm">${note.sticker}</div>
+              
+              <div class="note-view-content">
+                <p class="font-handwriting text-2xl text-neutral-800 leading-snug break-words">"${note.text}"</p>
+                ${imageHTML}
+              </div>
+              
+              <div class="mt-4 pt-2 border-t border-black/10 flex justify-between items-center text-[11px] font-label-sm font-bold text-neutral-600">
+                <span>✍️ <span class="author-display">${note.author}</span></span>
+                <div class="flex gap-2 font-mono">
+                  <button onclick="enterEditMode(${note.id})" class="text-neutral-500 hover:text-primary transition-colors">edit ✎</button>
+                  <button onclick="deleteNote(${note.id})" class="text-neutral-400 hover:text-red-500 transition-colors">remove ×</button>
+                </div>
+              </div>
+            `;
+            wallCanvas.appendChild(cardNode);
+          });
+        } catch (err) {
+          console.error("Make sure your backend server.js is running!", err);
+        }
+      }
+
+      // Handle Note Creation with multipart file streaming uploads
+      freedomForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const authorInput = document.getElementById('note-author');
+        const textInput = document.getElementById('note-text');
+        const imageInput = document.getElementById('note-image');
+        const selectedSticker = document.querySelector('input[name="note-sticker"]:checked').value;
+
+        const randomBg = bgPool[Math.floor(Math.random() * bgPool.length)];
+        const randomRotDeg = ((Math.random() * 5) - 2.5).toFixed(1);
+
+        const formData = new FormData();
+        formData.append('author', authorInput.value.trim());
+        formData.append('text', textInput.value.trim());
+        formData.append('sticker', selectedSticker);
+        formData.append('bgColor', randomBg);
+        formData.append('rotation', `rotate-[${randomRotDeg}deg]`);
+        
+        if (imageInput.files[0]) {
+          formData.append('image', imageInput.files[0]);
+        }
+
+        await fetch(API_URL, { method: 'POST', body: formData });
+
+        authorInput.value = '';
+        textInput.value = '';
+        imageInput.value = '';
+        renderWall();
+      });
+
+      // Inline Edit Mode Transformation Engine
+      window.enterEditMode = function(id) {
+        const cardNode = document.getElementById(`note-${id}`);
+        const viewContainer = cardNode.querySelector('.note-view-content');
+        const actionContainer = cardNode.querySelector('.font-mono');
+        const currentText = viewContainer.querySelector('p').innerText.replace(/^"|"$/g, '');
+        const currentAuthor = cardNode.querySelector('.author-display').innerText;
+
+        viewContainer.innerHTML = `
+          <div class="space-y-2 mt-2">
+            <input type="text" class="edit-author w-full p-1 text-xs border-2 border-black rounded bg-white font-sans font-bold" value="${currentAuthor}">
+            <textarea class="edit-text w-full p-2 text-sm border-2 border-black rounded bg-white font-handwriting text-xl" rows="3">${currentText}</textarea>
+          </div>
+        `;
+
+        actionContainer.innerHTML = `
+          <button onclick="saveEdit(${id})" class="text-emerald-600 hover:text-emerald-700 font-bold transition-colors">save ✓</button>
+          <button onclick="renderWall()" class="text-neutral-500 hover:text-black transition-colors">cancel ✕</button>
+        `;
+      };
+
+      // Save Edited text changes to server
+      window.saveEdit = async function(id) {
+        const cardNode = document.getElementById(`note-${id}`);
+        const newAuthor = cardNode.querySelector('.edit-author').value.trim();
+        const newText = cardNode.querySelector('.edit-text').value.trim();
+
+        if (!newAuthor || !newText) return;
+
+        await fetch(`${API_URL}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ author: newAuthor, text: newText })
+        });
+
+        renderWall();
+      };
+
+      // Delete note and clean up files on server
+      window.deleteNote = async function(id) {
+        await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+        renderWall();
+      };
+
+      renderWall();
+    </script>
+  </body>
+</html>

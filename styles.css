@@ -1,0 +1,795 @@
+/* Yearbook Multi-Layered Binder Layout Custom Styles */
+:root {
+    --ink: #20212f;
+    --blue: #0d78a8;
+    --blue-soft: #d7efff;
+    --pink: #ff9fcb;
+    --pink-soft: #ffe1ef;
+    --teal: #63cfaa;
+    --orange: #f07035;
+    --yellow: #ffe56a;
+    --paper: #fffaf0;
+    --paper-deep: #f5ead6;
+    --line: #aac7e8;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 12px 12px, rgba(13, 120, 168, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 159, 203, 0.26) 1px, transparent 1px),
+        linear-gradient(rgba(170, 199, 232, 0.38) 1px, transparent 1px),
+        var(--paper);
+    background-size: 24px 24px, 36px 36px, 36px 36px, auto;
+}
+
+body::selection {
+    background: var(--yellow);
+    color: var(--ink);
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+body::before {
+    width: 118px;
+    height: 118px;
+    top: 102px;
+    right: 18px;
+    background:
+        linear-gradient(45deg, transparent 46%, rgba(240, 112, 53, 0.45) 47% 53%, transparent 54%),
+        linear-gradient(-45deg, transparent 46%, rgba(240, 112, 53, 0.45) 47% 53%, transparent 54%);
+    transform: rotate(10deg);
+    opacity: 0.24;
+}
+
+body::after {
+    width: 130px;
+    height: 130px;
+    left: 18px;
+    bottom: 92px;
+    border: 4px solid rgba(13, 120, 168, 0.35);
+    border-radius: 48% 52% 44% 56%;
+    box-shadow: 16px 12px 0 rgba(255, 159, 203, 0.25);
+    transform: rotate(-18deg);
+}
+
+main {
+    isolation: isolate;
+}
+
+.blur-3xl {
+    display: none;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.paper-grid {
+    background-color: #fffdf5;
+    background-image:
+        linear-gradient(rgba(145, 184, 218, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(145, 184, 218, 0.42) 1px, transparent 1px),
+        linear-gradient(90deg, transparent 0 58px, rgba(255, 159, 203, 0.45) 59px 61px, transparent 62px);
+    background-size: 30px 30px, 30px 30px, 100% 100%;
+}
+
+.paper-ruled {
+    background-color: #fffdf4;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px);
+    background-size: 100% 32px;
+}
+
+.sticker-shadow {
+    box-shadow: 4px 4px 0px 0px var(--ink);
+}
+
+.polaroid-shadow {
+    box-shadow: 8px 8px 0 rgba(13, 120, 168, 0.3), 16px 16px 0 rgba(255, 159, 203, 0.24), 18px 18px 24px rgba(32, 33, 47, 0.12);
+    border: 2px solid rgba(32, 33, 47, 0.14);
+}
+
+.washi-tape {
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L5 2 L10 0 L15 3 L20 1 L25 4 L30 0 L35 2 L40 0 L45 3 L50 1 L55 4 L60 0 L65 2 L70 0 L75 3 L80 1 L85 4 L90 0 L95 2 L100 0 L100 20 L95 18 L90 20 L85 17 L80 19 L75 16 L70 20 L65 18 L60 20 L55 17 L50 19 L45 16 L40 20 L35 18 L30 20 L25 17 L20 19 L15 16 L10 20 L5 18 L0 20 Z" fill="black"/></svg>');
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L5 2 L10 0 L15 3 L20 1 L25 4 L30 0 L35 2 L40 0 L45 3 L50 1 L55 4 L60 0 L65 2 L70 0 L75 3 L80 1 L85 4 L90 0 L95 2 L100 0 L100 20 L95 18 L90 20 L85 17 L80 19 L75 16 L70 20 L65 18 L60 20 L55 17 L50 19 L45 16 L40 20 L35 18 L30 20 L25 17 L20 19 L15 16 L10 20 L5 18 L0 20 Z" fill="black"/></svg>');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+}
+
+.binder-rings {
+    background: linear-gradient(90deg, #2c3040 0%, #767d91 48%, #2c3040 100%);
+    width: 22px;
+    height: 62px;
+    border-radius: 30px;
+    box-shadow: inset 2px 2px 4px rgba(255,255,255,0.3);
+}
+
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-5px) rotate(1deg); }
+}
+
+.active-bounce {
+    animation: bounce-subtle 3s ease-in-out infinite;
+}
+
+/* Page transitions */
+.fade-transition {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+/* Extra textures previously duplicated as inline <style> blocks on
+   home.html, index.html, and memoryHall.html — now shared in one place. */
+
+.ruled-paper {
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(rgba(170, 199, 232, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 159, 203, 0.28) 1px, transparent 1px);
+    background-size: 100% 2rem;
+}
+
+.grid-paper {
+    background-color: #fffdf4;
+    background-image:
+        linear-gradient(rgba(170, 199, 232, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(170, 199, 232, 0.45) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+
+.paper-texture {
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(rgba(255, 159, 203, 0.38) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 120, 168, 0.22) 1px, transparent 1px),
+        radial-gradient(rgba(99, 207, 170, 0.28) 1px, transparent 1px);
+    background-size: 26px 26px, 26px 26px, 18px 18px;
+}
+
+.torn-edge {
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 10V0C5 2 10 0 15 3C20 1 25 4 30 2C35 5 40 1 45 4C50 2 55 5 60 3C65 6 70 2 75 5C80 3 85 6 90 4C95 7 100 3 100 0V10H0Z" fill="black"/></svg>');
+    mask-size: 100% 10px;
+    mask-repeat: no-repeat;
+    mask-position: bottom;
+    padding-bottom: 10px;
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 10V0C5 2 10 0 15 3C20 1 25 4 30 2C35 5 40 1 45 4C50 2 55 5 60 3C65 6 70 2 75 5C80 3 85 6 90 4C95 7 100 3 100 0V10H0Z" fill="black"/></svg>');
+    -webkit-mask-size: 100% 10px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: bottom;
+}
+
+.washi-tape-pink {
+    background-color: rgba(255, 159, 203, 0.82);
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0L5 2L10 0L15 3L20 1L25 4L30 2L35 5L40 1L45 4L50 2L55 5L60 3L65 6L70 2L75 5L80 3L85 6L90 4L95 7L100 5V15L95 13L90 16L85 14L80 17L75 15L70 18L65 14L60 17L55 15L50 18L45 14L40 17L35 15L30 18L25 14L20 17L15 15L10 18L5 14L0 15V0Z" fill="black"/></svg>');
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0L5 2L10 0L15 3L20 1L25 4L30 2L35 5L40 1L45 4L50 2L55 5L60 3L65 6L70 2L75 5L80 3L85 6L90 4L95 7L100 5V15L95 13L90 16L85 14L80 17L75 15L70 18L65 14L60 17L55 15L50 18L45 14L40 17L35 15L30 18L25 14L20 17L15 15L10 18L5 14L0 15V0Z" fill="black"/></svg>');
+}
+
+.notebook-spiral {
+    background: linear-gradient(90deg, #1e2433 0%, #7d879a 50%, #1e2433 100%);
+    width: 14px;
+    height: 28px;
+    border-radius: 8px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.animate-float {
+    animation: bounce-subtle 3s ease-in-out infinite;
+}
+
+.paper-texture > .mb-12 {
+    padding-top: 0.75rem;
+}
+
+#app-shell-top header {
+    background:
+        linear-gradient(90deg, rgba(255, 225, 239, 0.94), rgba(215, 239, 255, 0.94)),
+        var(--paper);
+    border-bottom: 3px solid rgba(32, 33, 47, 0.12);
+    box-shadow: 0 8px 0 rgba(13, 120, 168, 0.08);
+}
+
+#app-shell-top header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 8px;
+    background: repeating-linear-gradient(135deg, var(--pink) 0 16px, transparent 16px 28px, var(--teal) 28px 44px, transparent 44px 56px);
+    opacity: 0.5;
+}
+
+#app-shell-top header input::placeholder {
+    color: rgba(75, 85, 112, 0.72);
+}
+
+#sidebar-menu {
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0 78%, rgba(215, 239, 255, 0.92) 78%),
+        var(--paper);
+    border-right-color: var(--ink);
+    box-shadow: 14px 0 0 rgba(255, 159, 203, 0.38);
+}
+
+#sidebar-menu nav a {
+    border: 1px solid transparent;
+}
+
+#sidebar-menu nav a:hover,
+#sidebar-menu nav a.bg-secondary-container {
+    background: #fffdf4;
+    border-color: rgba(32, 33, 47, 0.14);
+    box-shadow: 4px 4px 0 rgba(13, 120, 168, 0.2);
+}
+
+#binder-canvas {
+    border-radius: 2px;
+    border-left-color: rgba(32, 33, 47, 0.22);
+    box-shadow: 0 18px 0 rgba(255, 159, 203, 0.3), 0 28px 0 rgba(13, 120, 168, 0.14), 0 34px 64px rgba(32, 33, 47, 0.16);
+}
+
+#binder-canvas::before,
+#binder-canvas::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#binder-canvas::before {
+    width: 112px;
+    height: 40px;
+    top: 18px;
+    right: 22%;
+    background: rgba(255, 229, 106, 0.88);
+    transform: rotate(-3deg);
+    clip-path: polygon(0 16%, 9% 0, 18% 17%, 28% 4%, 37% 19%, 47% 2%, 57% 19%, 67% 5%, 76% 17%, 86% 0, 100% 15%, 100% 84%, 90% 100%, 80% 82%, 70% 98%, 60% 83%, 50% 100%, 40% 84%, 30% 98%, 20% 83%, 10% 100%, 0 84%);
+}
+
+#binder-canvas::after {
+    width: 86px;
+    height: 36px;
+    right: 38px;
+    top: 154px;
+    border: 3px solid rgba(13, 120, 168, 0.65);
+    border-radius: 50%;
+    box-shadow: none;
+    transform: rotate(-12deg);
+}
+
+#binder-name,
+main h2,
+footer .font-display-script {
+    text-shadow: 3px 3px 0 #fffdf4, 7px 7px 0 rgba(255, 159, 203, 0.68), 10px 10px 0 rgba(255, 229, 106, 0.5);
+}
+
+#binder-title,
+.font-handwriting,
+#binder-main-caption,
+#binder-mini-caption {
+    color: #4b5570;
+}
+
+#film-hanbin,
+#film-felita,
+#film-kevin {
+    border-radius: 3px;
+    clip-path: polygon(4% 0, 96% 0, 100% 6%, 98% 100%, 2% 100%, 0 7%);
+}
+
+#binder-main-img,
+#binder-mini-img,
+.polaroid-shadow img {
+    filter: saturate(1.08) contrast(1.02);
+}
+
+#binder-main-img {
+    border: 8px solid var(--blue-soft);
+    outline: 4px solid rgba(255, 255, 255, 0.95);
+}
+
+#binder-facts li {
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px dashed rgba(13, 120, 168, 0.28);
+    padding: 0.45rem 0.55rem;
+    transform: rotate(-0.4deg);
+}
+
+#binder-facts li:nth-child(even) {
+    transform: rotate(0.6deg);
+}
+
+#binder-message + div span,
+.fixed span.bg-primary\/20,
+footer .w-12 {
+    border: 1px solid rgba(32, 33, 47, 0.1);
+}
+
+section .bg-white,
+#binder-canvas .bg-white {
+    position: relative;
+}
+
+section .bg-white::before,
+#binder-canvas .bg-white::before {
+    content: "";
+    position: absolute;
+    width: 74px;
+    height: 24px;
+    top: -13px;
+    left: 24px;
+    background: rgba(191, 232, 255, 0.74);
+    transform: rotate(-6deg);
+    clip-path: polygon(0 15%, 10% 0, 20% 18%, 30% 3%, 40% 17%, 50% 0, 60% 18%, 70% 4%, 80% 16%, 90% 0, 100% 15%, 100% 85%, 90% 100%, 80% 82%, 70% 97%, 60% 83%, 50% 100%, 40% 83%, 30% 97%, 20% 82%, 10% 100%, 0 85%);
+    z-index: 3;
+}
+
+section .bg-white:nth-child(even)::before {
+    background: rgba(255, 159, 203, 0.75);
+}
+
+.bg-secondary-fixed\/30,
+.bg-secondary-container,
+.bg-primary-fixed {
+    border: 2px solid rgba(32, 33, 47, 0.14);
+}
+
+.rounded-full:not(button):not(.material-symbols-outlined) {
+    border-radius: 8px;
+}
+
+.fixed.bottom-8,
+.fixed.bottom-24 {
+    border-radius: 14px;
+    border: 2px solid rgba(32, 33, 47, 0.16);
+}
+
+.scrapbook-spread::before {
+    content: "304";
+    position: absolute;
+    top: 10px;
+    right: 42px;
+    z-index: 2;
+    background: var(--teal);
+    color: white;
+    padding: 0.45rem 0.75rem;
+    font: 800 1rem/1 "Bricolage Grotesque", sans-serif;
+    transform: rotate(5deg);
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+.scrapbook-page {
+    overflow: hidden;
+}
+
+.scrapbook-page > * {
+    position: relative;
+    z-index: 4;
+}
+
+.scrapbook-page .binder-rings {
+    z-index: 6;
+}
+
+.scrapbook-page .collage-title-block::before,
+.scrapbook-page .collage-title-block::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.scrapbook-page .collage-title-block::before {
+    width: 72px;
+    height: 72px;
+    left: -18px;
+    top: 18px;
+    background: var(--yellow);
+    clip-path: polygon(50% 0, 61% 32%, 96% 25%, 70% 49%, 90% 80%, 55% 68%, 32% 98%, 33% 62%, 0 50%, 34% 38%);
+    transform: rotate(-14deg);
+}
+
+.scrapbook-page .collage-title-block::after {
+    width: 140px;
+    height: 48px;
+    right: 18%;
+    bottom: -12px;
+    background:
+        radial-gradient(circle at 12px 24px, var(--blue) 0 3px, transparent 4px),
+        radial-gradient(circle at 40px 14px, var(--pink) 0 4px, transparent 5px),
+        radial-gradient(circle at 66px 28px, var(--orange) 0 3px, transparent 4px),
+        radial-gradient(circle at 96px 17px, var(--teal) 0 4px, transparent 5px);
+    transform: rotate(3deg);
+}
+
+.scrapbook-tab {
+    color: #09698f;
+    background: #bfe8ff;
+    border: 2px solid rgba(32, 33, 47, 0.16);
+    box-shadow: 3px 3px 0 rgba(240, 112, 53, 0.45);
+}
+
+.scrapbook-date {
+    min-width: 88px;
+    background: #fff8d0;
+    border-radius: 1px;
+    box-shadow: 5px 5px 0 var(--pink), 8px 8px 0 var(--ink);
+}
+
+.collage-portrait::before {
+    content: "OMG";
+    position: absolute;
+    z-index: 8;
+    top: 36px;
+    left: -10px;
+    background: var(--blue);
+    color: white;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    font: 800 0.75rem/1 "JetBrains Mono", monospace;
+    transform: rotate(-12deg);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.collage-portrait::after {
+    content: "";
+    position: absolute;
+    z-index: 8;
+    right: 4px;
+    bottom: 28px;
+    width: 98px;
+    height: 98px;
+    border: 5px solid var(--orange);
+    border-radius: 50%;
+    clip-path: polygon(50% 0, 59% 35%, 96% 22%, 67% 49%, 91% 80%, 55% 66%, 30% 98%, 32% 61%, 0 48%, 36% 37%);
+    opacity: 0.75;
+    transform: rotate(18deg);
+}
+
+.cutout-frame {
+    background: #ffffff;
+    clip-path: polygon(2% 0, 98% 1%, 100% 7%, 98% 100%, 3% 99%, 0 92%, 1% 4%);
+}
+
+.cutout-frame::after {
+    content: "";
+    position: absolute;
+    inset: 20px 18px 64px;
+    border: 8px solid rgba(13, 120, 168, 0.16);
+    pointer-events: none;
+}
+
+.profile-card {
+    background:
+        linear-gradient(rgba(13, 120, 168, 0.16) 1px, transparent 1px),
+        #99edca;
+    background-size: 100% 31px;
+    border: 3px solid var(--ink);
+}
+
+.profile-card h3 {
+    display: inline-flex;
+    background: #fff8d0;
+    padding: 0.25rem 0.55rem;
+    box-shadow: 3px 3px 0 rgba(255, 159, 203, 0.75);
+    transform: rotate(-1deg);
+}
+
+.sticker-panel::after {
+    content: "HEBAT";
+    position: absolute;
+    right: -18px;
+    bottom: -18px;
+    background: var(--pink);
+    color: white;
+    padding: 0.45rem 0.7rem;
+    border: 3px solid white;
+    box-shadow: 4px 4px 0 var(--ink);
+    font: 800 1.15rem/1 "Bricolage Grotesque", sans-serif;
+    transform: rotate(-8deg);
+}
+
+.mini-cutout {
+    border: 8px solid #d7efff;
+    border-radius: 2px;
+}
+
+.notebook-note {
+    background:
+        linear-gradient(rgba(170, 199, 232, 0.68) 1px, transparent 1px),
+        #fffdf4;
+    background-size: 100% 28px;
+    box-shadow: 5px 5px 0 rgba(255, 229, 106, 0.8);
+}
+
+.message-sticker {
+    border: 3px solid var(--ink);
+    background:
+        linear-gradient(135deg, rgba(255, 159, 203, 0.65), transparent 46%),
+        #d7efff;
+}
+
+.message-sticker::before {
+    content: "";
+    position: absolute;
+    width: 82px;
+    height: 82px;
+    right: 18px;
+    bottom: 12px;
+    background: var(--yellow);
+    clip-path: polygon(50% 0, 61% 32%, 96% 25%, 70% 49%, 90% 80%, 55% 68%, 32% 98%, 33% 62%, 0 50%, 34% 38%);
+    opacity: 0.5;
+    transform: rotate(12deg);
+}
+
+.message-sticker span.rounded-full {
+    border-radius: 2px;
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    top: 86px;
+    left: 8%;
+    width: 132px;
+    height: 68px;
+    border: 4px solid rgba(13, 120, 168, 0.32);
+    border-bottom-color: transparent;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-9deg);
+    pointer-events: none;
+}
+
+main::after {
+    content: "✦";
+    position: absolute;
+    top: 128px;
+    right: 12%;
+    color: var(--orange);
+    font-size: 3rem;
+    transform: rotate(18deg);
+    pointer-events: none;
+    text-shadow: 32px 30px 0 rgba(13, 120, 168, 0.45), -28px 58px 0 rgba(255, 159, 203, 0.55);
+}
+
+@media (max-width: 768px) {
+    body::before,
+    body::after {
+        opacity: 0.24;
+        transform: scale(0.7);
+    }
+
+    #binder-canvas {
+        min-height: 980px;
+        border-left-width: 12px;
+        padding-bottom: 15rem;
+    }
+
+    .scrapbook-spread::before,
+    main::before,
+    main::after {
+        display: none;
+    }
+
+    .collage-title-block::before,
+    .collage-title-block::after,
+    .collage-portrait::before,
+    .collage-portrait::after,
+    .sticker-panel::after {
+        transform: scale(0.72) rotate(-6deg);
+    }
+
+    .scrapbook-page .collage-title-block::after,
+    .collage-portrait::after {
+        opacity: 0.35;
+    }
+
+    #binder-name {
+        font-size: clamp(2.7rem, 15vw, 4.5rem);
+        line-height: 0.95;
+        overflow-wrap: anywhere;
+    }
+
+    .cutout-frame::after {
+        inset: 16px 14px 64px;
+        border-width: 4px;
+    }
+
+    .profile-card h3 {
+        font-size: 1.05rem;
+    }
+
+    #binder-canvas::after {
+        width: 52px;
+        height: 52px;
+        right: 16px;
+        top: 104px;
+    }
+
+    #binder-name,
+    main h2 {
+        text-shadow: 2px 2px 0 #fffdf4, 4px 4px 0 rgba(255, 159, 203, 0.42);
+    }
+
+    .polaroid-shadow {
+        box-shadow: 5px 5px 0 rgba(13, 120, 168, 0.22), 10px 10px 18px rgba(32, 33, 47, 0.1);
+    }
+
+    section .font-display-script.text-\[42px\] {
+        font-size: 2rem;
+        line-height: 2.35rem;
+    }
+}
+
+/* ==========================================================================
+   PREMIUM VECTOR SHAPES & FLUID 3D ANIMATIONS
+   ========================================================================== */
+
+#screen-magic-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Base Particle Configuration with GPU Optimization */
+.magic-particle {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  opacity: 0;
+}
+
+/* --- PREMIUM GRAPHIC SCULPTED CSS SHAPES --- */
+
+/* 1. Sculpted Gradient Heart */
+.shape-heart {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #ff4b72, #f43f5e);
+  transform: rotate(-45deg);
+  filter: drop-shadow(0 4px 6px rgba(244, 63, 94, 0.3));
+}
+.shape-heart::before,
+.shape-heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  border-radius: 50%;
+}
+.shape-heart::before { top: -10px; left: 0; }
+.shape-heart::after { left: 10px; top: 0; }
+
+/* 2. 3D layered Blossom Flower */
+.shape-flower {
+  width: 22px;
+  height: 22px;
+  background: #f472b6;
+  border-radius: 50%;
+  filter: drop-shadow(0 4px 8px rgba(244, 114, 182, 0.4));
+}
+.shape-flower::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: inherit;
+  border-radius: 50%;
+  transform: rotate(30deg);
+}
+.shape-flower::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: inherit;
+  border-radius: 50%;
+  transform: rotate(60deg);
+}
+/* Glowing core for the flower */
+.shape-flower-center {
+  position: absolute;
+  inset: 6px;
+  background: linear-gradient(135deg, #fef08a, #facc15);
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 3. Aesthetic Magic 4-Point Flare (Glitter) */
+.shape-glitter {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #ffffff 10%, #fbbf24 60%, transparent 100%);
+  mask: padding-box, url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="black" d="M50,0 Q50,50 100,50 Q50,50 50,100 Q50,50 0,50 Q50,50 50,0 Z"/></svg>');
+  -webkit-mask: padding-box, radial-gradient(circle at 50% 50%, black, transparent 70%);
+  clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+}
+
+/* 4. Elegant Soft Curved Star */
+.shape-star {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  clip-path: polygon(50% 0%, 62% 35%, 98% 35%, 69% 57%, 80% 91%, 50% 70%, 20% 91%, 31% 57%, 2% 35%, 38% 35%);
+  filter: drop-shadow(0 4px 6px rgba(245, 158, 11, 0.3));
+}
+
+/* --- OPTIMIZED FLUID PIPELINES --- */
+
+/* Fluid Floating Rise (Hearts/Flowers) */
+.particle-float {
+  bottom: -60px;
+  animation: fluidFloatUp 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fluidFloatUp {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.2) rotate(var(--base-rot, 0deg));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translate3d(var(--drift-start, 0px), -15vh, 0) scale(1.1) rotate(calc(var(--base-rot, 0deg) + 20deg));
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(var(--drift-end, 40px), -120vh, 0) scale(0.6) rotate(calc(var(--base-rot, 0deg) + var(--spin-deg, 270deg)));
+    opacity: 0;
+  }
+}
+
+/* Kinetic Momentum Explosion (Glitters/Stars) */
+.particle-burst {
+  animation: fluidBurst 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fluidBurst {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+    transform: translate3d(calc(var(--tx) * 0.12), calc(var(--ty) * 0.12), 0) scale(1.4) rotate(45deg);
+  }
+  100% {
+    transform: translate3d(var(--tx), var(--ty), 0) scale(0.3) rotate(var(--spin-deg, 450deg));
+    opacity: 0;
+  }
+}

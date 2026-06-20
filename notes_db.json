@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1781933282054,
+    "author": "Zaira Marie",
+    "text": "hii",
+    "sticker": "❤️",
+    "bgColor": "bg-orange-100",
+    "rotation": "rotate-[1.6deg]",
+    "image": "assets/images/message/1781933282043.webp"
+  },
+  {
+    "id": 1,
+    "author": "Lena & The Dorm 4 Crew",
+    "text": "Four years flew by too quickly! Thanks for keeping us safe during finals week.",
+    "sticker": "❤️",
+    "image": null,
+    "bgColor": "bg-emerald-100",
+    "rotation": "rotate-[1.5deg]"
+  }
+]
