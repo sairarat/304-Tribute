@@ -218,7 +218,7 @@
         renderWall();
       };
 
-      // Delete note and clean up files on server
+      // Delete a note and clean up files on server
       window.deleteNote = async function(id) {
         await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
         renderWall();
