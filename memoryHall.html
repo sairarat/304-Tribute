@@ -1,0 +1,166 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pages of Felita - Memory Wall</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Bricolage+Grotesque:wght@700;800&family=Epilogue:wght@300&family=Space+Grotesk:wght@400&family=JetBrains+Mono:wght@500&family=Indie+Flower&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body
+    class="bg-background text-on-background font-body-lg overflow-x-hidden min-h-screen"
+  >
+    <div id="app-shell-top"></div>
+
+    <main class="relative paper-texture min-h-screen p-4 sm:p-8 md:p-12 pt-24 pb-24">
+      <div class="max-w-7xl mx-auto relative z-10">
+        
+        <div class="mb-12 relative max-w-xl bg-white p-6 border-4 border-black rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[-0.5deg]">
+          <div class="absolute -top-3 left-6 flex gap-3">
+            <div class="w-4 h-4 bg-neutral-300 rounded-full border-2 border-black shadow-inner"></div>
+            <div class="w-4 h-4 bg-neutral-300 rounded-full border-2 border-black shadow-inner"></div>
+          </div>
+          <h2 class="font-display-lg text-2xl font-black text-primary tracking-tight">Interactive Memory Board</h2>
+          <p class="text-sm text-on-surface-variant font-body-lg mt-1.5 leading-relaxed">
+            Click individual polaroids to instantly pop and toggle their size focus. Hover over item pins to trigger tactile tilt shifts!
+          </p>
+          <div class="absolute -top-4 -right-3 bg-yellow-200 border-2 border-black font-label-sm text-[10px] font-bold px-2 py-0.5 rotate-6 shadow-sm">
+            CLASS OF 2026 🎓
+          </div>
+        </div>
+
+        <div class="mb-12 max-w-sm">
+          <div id="sidebar-music-player" class="w-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 relative">
+          
+          <div class="relative group transition-all duration-300 origin-center">
+            <div class="bg-white p-4 pb-6 polaroid-shadow rotate-[-2deg] border-2 border-black cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+              <div class="aspect-square w-full bg-neutral-100 overflow-hidden rounded-xl border-2 border-black mb-4 relative">
+                <img src="assets/images/BDAY ni Xandy.jpg" alt="BDAY ni Xandy" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 bg-purple-400 text-white font-label-sm text-[9px] px-1.5 py-0.5 border border-black font-bold rounded">CAMPUS LIVE</div>
+              </div>
+              <p class="font-handwriting text-2xl text-center text-primary">BDAY ni Xandy</p>
+              <p class="text-center font-label-sm text-[10px] text-neutral-400 mt-1">📍 SM North Bowling</p>
+            </div>
+            <div class="absolute -top-3 left-1/3 w-20 h-6 bg-pink-300/60 border border-dashed border-black/20 -rotate-3 pointer-events-none"></div>
+          </div>
+
+          <div class="relative group transition-all duration-300 origin-center">
+            <div class="bg-white p-4 pb-6 polaroid-shadow rotate-[3deg] border-2 border-black cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+              <div class="aspect-square w-full bg-neutral-100 overflow-hidden rounded-xl border-2 border-black mb-4 relative">
+                <img src="assets/images/2026 Photoshoot.jpg" alt="2026 Photoshoot" class="w-full h-full object-cover">
+                <div class="absolute bottom-2 right-2 bg-amber-300 font-label-sm text-[9px] px-1.5 py-0.5 border border-black font-bold rounded">⚡ Yearly Photoshoot</div>
+              </div>
+              <p class="font-handwriting text-2xl text-center text-secondary">2026: 304 Photoshoot</p>
+              <p class="text-center font-label-sm text-[10px] text-neutral-400 mt-1">📍 Recto: Dos Studio</p>
+            </div>
+            <div class="absolute -top-4 left-1/4 w-16 h-6 bg-yellow-200/70 border border-dashed border-black/20 rotate-6 pointer-events-none"></div>
+          </div>
+
+          <div class="relative group transition-all duration-300 origin-center">
+            <div class="bg-white p-4 pb-6 polaroid-shadow rotate-[-1deg] border-2 border-black cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+              <div class="aspect-square w-full bg-neutral-100 overflow-hidden rounded-xl border-2 border-black mb-4 relative">
+                <img src="assets/images/ASEAN Con.jpg" alt="ASEAN CON" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-emerald-400 text-white font-label-sm text-[9px] px-1.5 py-0.5 border border-black font-bold rounded">Cup of Joe :0</div>
+              </div>
+              <p class="font-handwriting text-2xl text-center text-tertiary">ASEAN Con</p>
+              <p class="text-center font-label-sm text-[10px] text-neutral-400 mt-1">📍 Cubao + Salaysay with Joy</p>
+            </div>
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-red-500 drop-shadow-md select-none pointer-events-none text-2xl">📌</div>
+          </div>
+
+          <div class="relative group transition-all duration-300 origin-center">
+            <div class="bg-white p-4 pb-6 polaroid-shadow rotate-[2deg] border-2 border-black cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+              <div class="aspect-square w-full bg-neutral-100 overflow-hidden rounded-xl border-2 border-black mb-4 relative">
+                <img src="assets/images/2026 TP.png" alt="2026 TP" class="w-full h-full object-cover">
+                <div class="absolute bottom-2 left-2 bg-rose-400 text-white font-label-sm text-[9px] px-1.5 py-0.5 border border-black font-bold rounded">2026 TP</div>
+              </div>
+              <p class="font-handwriting text-2xl text-center text-red-500">Tanging Pagsamba</p>
+              <p class="text-center font-label-sm text-[10px] text-neutral-400 mt-1">📍 Templo Central</p>
+            </div>
+            <div class="absolute -bottom-3 -right-2 bg-lime-200 border-2 border-black p-1 rounded rotate-3 font-label-sm text-[9px] font-bold shadow-sm">⚠️ "Accurate Vibe"</div>
+          </div>
+
+          <div class="relative group transition-all duration-300 origin-center">
+            <div class="bg-white p-4 pb-6 polaroid-shadow rotate-[-3deg] border-2 border-black cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+              <div class="aspect-square w-full bg-neutral-100 overflow-hidden rounded-xl border-2 border-black mb-4 relative">
+                <img src="assets/images/BNH 2026.jpg" alt="BNH 2026" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 bg-cyan-400 text-white font-label-sm text-[9px] px-1.5 py-0.5 border border-black font-bold rounded">Blessed</div>
+              </div>
+              <p class="font-handwriting text-2xl text-center text-amber-600">Banal na Hapunan 2026</p>
+              <p class="text-center font-label-sm text-[10px] text-neutral-400 mt-1">📍 Lokal ng New Era University</p>
+            </div>
+            <div class="absolute -top-3 right-1/4 w-16 h-6 bg-orange-200/70 border border-dashed border-black/20 -rotate-6 pointer-events-none"></div>
+          </div>
+
+          <div class="relative group transition-all duration-300 origin-center">
+            <div class="bg-white p-4 pb-6 polaroid-shadow rotate-[1deg] border-2 border-black cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+              <div class="aspect-square w-full bg-neutral-100 overflow-hidden rounded-xl border-2 border-black mb-4 relative">
+                <img src="assets/images/Yna Sabog.jpg" alt="Yna Sabog" class="w-full h-full object-cover">
+                <div class="absolute bottom-2 right-2 bg-purple-500 text-white font-label-sm text-[9px] px-1.5 py-0.5 border border-black font-bold rounded">BONUS</div>
+              </div>
+              <p class="font-handwriting text-2xl text-center text-purple-600">BONUS FOR LOLS</p>
+              <p class="text-center font-label-sm text-[10px] text-neutral-400 mt-1">📍 Room 304 </p>
+            </div>
+            <div class="absolute -top-2 left-1/3 text-orange-400 drop-shadow-md select-none pointer-events-none text-2xl">📌</div>
+          </div>
+
+        </div>
+
+        <div class="absolute bottom-10 left-10 w-40 h-8 bg-secondary/20 washi-tape rotate-[5deg] pointer-events-none"></div>
+        <div class="absolute top-40 right-10 w-28 h-6 bg-primary/20 washi-tape -rotate-[12deg] pointer-events-none"></div>
+      </div>
+    </main>
+
+    <div id="app-shell-bottom"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="music.js"></script>
+    <script src="layout.js"></script>
+    <script src="app.js"></script>
+    <script>
+      initLayout("memory");
+
+      // Load streaming player script instance inside layout structure point
+      if (window.MusicPlayer && typeof window.MusicPlayer.init === "function") {
+        window.MusicPlayer.init("sidebar-music-player");
+      }
+
+      // RETAINED & PROTECTED ORIGINAL ANIMATION LOGIC: Click toggles zoom scale + rotation reset on target's parent nodes
+      document.querySelectorAll(".polaroid-shadow").forEach((card) => {
+        card.addEventListener("click", function () {
+          this.parentElement.classList.toggle("scale-110");
+          this.parentElement.classList.toggle("z-50");
+          this.parentElement.classList.toggle("rotate-0");
+        });
+      });
+
+      // NEW INTERACTIVE LAYER: Dynamic card tilt on mouse move context
+      document.addEventListener("mousemove", (e) => {
+        const items = document.querySelectorAll(".polaroid-shadow");
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+
+        items.forEach((item) => {
+          // Only apply floating adjustments if the card isn't currently zoomed in
+          if (!item.parentElement.classList.contains("scale-110")) {
+            const tiltX = (mouseY - 0.5) * 12;
+            const tiltY = (mouseX - 0.5) * -12;
+            item.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          } else {
+            item.style.transform = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
