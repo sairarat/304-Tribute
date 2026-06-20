@@ -231,7 +231,7 @@
       initLayout("home");
 
       // Subtle tilt effect for cards on mouse move
-      document.addEventListener("mousemove", (e) => {
+      document.onmousemove = (e) => {
         const cards = document.querySelectorAll(".polaroid-shadow");
         const mouseX = e.clientX / window.innerWidth;
         const mouseY = e.clientY / window.innerHeight;
@@ -252,7 +252,7 @@
             card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
           }
         });
-      });
+      };
     </script>
   </body>
 </html>

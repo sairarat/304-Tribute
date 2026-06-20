@@ -169,8 +169,148 @@ window.triggerScreenMagic = function(type) {
   }, 3600);
 };
 
+let isLayoutInitialized = false;
+
+function updateActiveNav(activeKey) {
+  // Update sidebar links (protecting the music player)
+  const sidebarNav = document.querySelector('#sidebar-menu nav');
+  if (sidebarNav) {
+    sidebarNav.innerHTML = SIDEBAR_LINKS.map((item) => renderSidebarLink(item, activeKey)).join("");
+  }
+
+  // Update header nav link active states
+  const headerNav = document.querySelector('header nav.hidden');
+  if (headerNav) {
+    const classActive = activeKey === "class";
+    headerNav.innerHTML = `
+      <a class="${classActive ? "text-primary font-bold underline decoration-wavy" : "text-on-surface-variant"} font-label-sm hover:rotate-1 hover:scale-105 transition-transform" href="index.html">Class Gallery</a>
+      <a class="text-on-surface-variant font-label-sm hover:rotate-1 hover:scale-105 transition-transform" href="message.html">Messages</a>
+    `;
+  }
+
+  // Update mobile nav
+  const bottom = document.getElementById("app-shell-bottom");
+  if (bottom) {
+    bottom.innerHTML = renderMobileNav(activeKey);
+  }
+}
+
+function loadPage(url, push = true) {
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load page");
+      return res.text();
+    })
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      
+      // Swap title
+      document.title = doc.title;
+      
+      // Swap main content
+      const newMain = doc.querySelector('main');
+      const currentMain = document.querySelector('main');
+      if (newMain && currentMain) {
+        currentMain.className = newMain.className;
+        currentMain.innerHTML = newMain.innerHTML;
+      }
+      
+      // Clear page-specific mousemove handler on document
+      if (document.onmousemove) {
+        document.onmousemove = null;
+      }
+      
+      // Clear global search input
+      const searchInput = document.getElementById("global-search-input");
+      if (searchInput) {
+        searchInput.value = "";
+      }
+
+      // Close sidebar menu if open
+      const sidebar = document.getElementById("sidebar-menu");
+      if (sidebar) {
+        sidebar.classList.add("-translate-x-full");
+      }
+
+      // Execute scripts in the new page
+      doc.querySelectorAll('body script').forEach(script => {
+        // Skip shared script tags
+        if (script.src && (
+          script.src.includes('layout.js') || 
+          script.src.includes('music.js') || 
+          script.src.includes('theme.js') || 
+          script.src.includes('iframe_api')
+        )) {
+          return;
+        }
+        
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          // Replace 'const' and 'let' with 'var' to prevent redeclaration errors
+          let code = script.textContent;
+          code = code.replace(/\bconst\b/g, 'var').replace(/\blet\b/g, 'var');
+          newScript.textContent = code;
+        }
+        document.body.appendChild(newScript);
+        newScript.remove();
+      });
+
+      if (push) {
+        history.pushState({}, "", url);
+      }
+    })
+    .catch(err => {
+      console.error("SPA Navigation failed:", err);
+      // Fallback to normal browser load if anything goes wrong
+      if (push) {
+        window.location.href = url;
+      }
+    });
+}
+
+function initSpa() {
+  if (window.SpaInitialized) return;
+  window.SpaInitialized = true;
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    // Check if it's one of the main tribute pages
+    const isLocalPage = href.endsWith('.html') || 
+                        href === 'index.html' || 
+                        href === 'home.html' || 
+                        href === 'memoryHall.html' || 
+                        href === 'message.html';
+
+    const parsedUrl = new URL(link.href, window.location.href);
+    const isSameOrigin = parsedUrl.origin === window.location.origin;
+
+    if (isLocalPage && isSameOrigin) {
+      e.preventDefault();
+      loadPage(href);
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    loadPage(window.location.pathname + window.location.search, false);
+  });
+}
+
 // Mounts the shared header, sidebar, and mobile nav into a page.
 function initLayout(active) {
+  if (isLayoutInitialized) {
+    updateActiveNav(active);
+    return;
+  }
+  isLayoutInitialized = true;
+
   const top = document.getElementById("app-shell-top");
   const bottom = document.getElementById("app-shell-bottom");
   
@@ -192,4 +332,7 @@ function initLayout(active) {
       window.MusicPlayer.init("sidebar-music-player");
     }
   }, 0);
+
+  // Initialize Single Page Application routing
+  initSpa();
 }

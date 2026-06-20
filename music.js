@@ -132,6 +132,10 @@ window.MusicPlayer = (function () {
   }
 
   function init(targetContainerId) {
+    if (scWidget) {
+      console.log("SoundCloud Widget already initialized.");
+      return;
+    }
     if (targetContainerId) lastTargetContainerId = targetContainerId;
     const container = document.getElementById(lastTargetContainerId);
     if (!container) return;
